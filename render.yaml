@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: fraud-risk-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: LOG_LEVEL
+        value: INFO
+      - key: KAGGLE_MAX_ROWS
+        value: "90000"
